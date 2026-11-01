@@ -3,8 +3,7 @@ const products = [
     name: "Giường & thang tre",
     category: "do-tre",
     description: "Giường và thang tre làm tại xưởng; trao đổi mẫu, kích thước khi đặt.",
-    image: "images/1793514628611_2302248318093158072_8414925042818070924_bbc98dd63fa89bb948191620b139f778.jpg",
-    alt: "Giường tre và thang tre làm tại xưởng",
+    alt: "Hình ảnh giường và thang tre sẽ được cập nhật",
     label: "GIƯỜNG & THANG",
   },
   {
@@ -17,8 +16,16 @@ const products = [
     name: "Bàn ghế tre",
     category: "do-tre",
     description: "Bàn ghế tre dùng cho gia đình, sân vườn và quán.",
-    image: "images/1793514628648_2302248318093158072_8414925042818070924_faf610fb0ae1437bdadcbadafabccfb0.jpg",
-    alt: "Bộ bàn ghế tre tại xưởng",
+    images: [
+      {
+        src: "images/1793514628648_2302248318093158072_8414925042818070924_faf610fb0ae1437bdadcbadafabccfb0.jpg",
+        alt: "Bộ bàn ghế tre tại xưởng",
+      },
+      {
+        src: "images/1793514628611_2302248318093158072_8414925042818070924_bbc98dd63fa89bb948191620b139f778.jpg",
+        alt: "Ghế tre làm tại xưởng",
+      },
+    ],
     label: "BÀN GHẾ TRE",
   },
   {
@@ -46,7 +53,9 @@ const filterButtons = document.querySelectorAll(".filter-chip");
 let activeFilter = "all";
 
 function renderProducts() {
-  const searchTerm = searchInput.value.trim().toLocaleLowerCase("vi");
+  if (!productGrid) return;
+
+  const searchTerm = searchInput?.value.trim().toLocaleLowerCase("vi") || "";
   const visibleProducts = products.filter((product) => {
     const matchesCategory = activeFilter === "all" || product.category === activeFilter;
     const matchesSearch = `${product.name} ${product.description}`
@@ -58,21 +67,32 @@ function renderProducts() {
   productGrid.innerHTML = visibleProducts
     .map(
       (product) => {
+        const hasImage = Boolean(product.image || product.images);
         const imageContent = product.image
           ? `<img src="${product.image}" alt="${product.alt}" loading="lazy" />`
+          : product.images
+            ? `<img src="${product.images[0].src}" alt="${product.images[0].alt}" loading="lazy" />`
           : `<span class="image-placeholder" aria-hidden="true"><span>竹</span><small>HÌNH ẢNH ĐANG CẬP NHẬT</small></span>`;
+        const carouselControls = product.images?.length > 1
+          ? `<button class="image-carousel-control image-carousel-prev" type="button" data-carousel-step="-1" aria-label="Xem ảnh trước">‹</button>
+             <span class="image-carousel-count" aria-live="polite">1 / ${product.images.length}</span>
+             <button class="image-carousel-control image-carousel-next" type="button" data-carousel-step="1" aria-label="Xem ảnh tiếp theo">›</button>`
+          : "";
 
         return `
         <article class="product-card">
-          <a class="product-image${product.image ? "" : " product-image--placeholder"}" href="tel:+84943567910" aria-label="Gọi hỏi về ${product.name}">
-            ${imageContent}
-            <span class="product-label">${product.label}</span>
-            <span class="image-arrow" aria-hidden="true">↗</span>
-          </a>
+          <div class="product-media" data-product-name="${product.name}">
+            <a class="product-image${hasImage ? "" : " product-image--placeholder"}" href="tel:+84973475757" aria-label="Gọi hỏi về ${product.name}">
+              ${imageContent}
+              <span class="product-label">${product.label}</span>
+              <span class="image-arrow" aria-hidden="true">↗</span>
+            </a>
+            ${carouselControls}
+          </div>
           <div class="product-info">
             <h3>${product.name}</h3>
             <p>${product.description}</p>
-            <a class="product-link" href="tel:+84943567910">Gọi hỏi giá <span>→</span></a>
+            <a class="product-link" href="tel:+84973475757">Gọi hỏi giá <span>→</span></a>
           </div>
         </article>`;
       },
@@ -83,6 +103,27 @@ function renderProducts() {
   productGrid.hidden = visibleProducts.length === 0;
 }
 
+productGrid?.addEventListener("click", (event) => {
+  const control = event.target.closest("[data-carousel-step]");
+  if (!control) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  const media = control.closest(".product-media");
+  const product = products.find((item) => item.name === media.dataset.productName);
+  const image = media.querySelector(".product-image img");
+  const currentIndex = Number(media.dataset.imageIndex || 0);
+  const step = Number(control.dataset.carouselStep);
+  const nextIndex = (currentIndex + step + product.images.length) % product.images.length;
+
+  media.dataset.imageIndex = String(nextIndex);
+  image.src = product.images[nextIndex].src;
+  image.alt = product.images[nextIndex].alt;
+  media.querySelector(".image-carousel-count").textContent =
+    `${nextIndex + 1} / ${product.images.length}`;
+});
+
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     activeFilter = button.dataset.filter;
@@ -92,7 +133,7 @@ filterButtons.forEach((button) => {
   });
 });
 
-searchInput.addEventListener("input", renderProducts);
+searchInput?.addEventListener("input", renderProducts);
 
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
@@ -108,5 +149,79 @@ mainNav.querySelectorAll("a").forEach((link) => {
     mainNav.classList.remove("is-open");
   });
 });
+
+const contactToggle = document.querySelector(".mobile-contact-toggle");
+const contactOptions = document.querySelector(".mobile-contact-options");
+
+contactToggle.addEventListener("click", () => {
+  const isOpen = contactToggle.getAttribute("aria-expanded") !== "true";
+  contactToggle.setAttribute("aria-expanded", String(isOpen));
+  contactToggle.setAttribute("aria-label", isOpen ? "Đóng tùy chọn liên hệ" : "Mở tùy chọn liên hệ");
+  contactOptions.hidden = !isOpen;
+});
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".mobile-contact")) {
+    contactToggle.setAttribute("aria-expanded", "false");
+    contactToggle.setAttribute("aria-label", "Mở tùy chọn liên hệ");
+    contactOptions.hidden = true;
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    contactToggle.setAttribute("aria-expanded", "false");
+    contactToggle.setAttribute("aria-label", "Mở tùy chọn liên hệ");
+    contactOptions.hidden = true;
+  }
+});
+
+const revealItems = document.querySelectorAll("[data-reveal]");
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -35px 0px" },
+  );
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+}
+
+const lightboxLinks = document.querySelectorAll("[data-lightbox]");
+if (lightboxLinks.length > 0) {
+  const lightbox = document.createElement("dialog");
+  lightbox.className = "lightbox";
+  lightbox.setAttribute("aria-label", "Xem ảnh");
+  lightbox.innerHTML = `
+    <button class="lightbox-close" type="button" aria-label="Đóng ảnh">×</button>
+    <img class="lightbox-image" alt="" />
+    <p class="lightbox-caption"></p>`;
+  document.body.append(lightbox);
+
+  const lightboxImage = lightbox.querySelector(".lightbox-image");
+  const lightboxCaption = lightbox.querySelector(".lightbox-caption");
+
+  lightboxLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      lightboxImage.src = link.href;
+      lightboxImage.alt = link.querySelector("img")?.alt || "";
+      lightboxCaption.textContent = link.dataset.caption || lightboxImage.alt;
+      lightbox.showModal();
+    });
+  });
+
+  lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+}
 
 renderProducts();
