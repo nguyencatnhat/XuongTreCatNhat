@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Xưởng Tre Cát Nhật chuyên đóng giường, thang tre, bàn ghế; bán tre cây và nhận thi công nhà lá, quán cà phê."
+    />
+    <meta name="theme-color" content="#28382b" />
+    <title>Xưởng Tre Cát Nhật — Giường, thang & công trình tre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topline">
+      <span>TRE CÂY · ĐỒ TRE · THI CÔNG CÔNG TRÌNH</span>
+      <a href="tel:+84943567910">Gọi xưởng: 0943 567 910</a>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Xưởng Tre Cát Nhật — Trang chủ">
+        <span class="brand-icon" aria-hidden="true">竹</span>
+        <span class="brand-copy">
+          <strong>XƯỞNG TRE CÁT NHẬT</strong>
+          <small>TÂN CHÂU · TÂY NINH</small>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" aria-label="Điều hướng chính">
+        <a href="#san-pham">Sản phẩm</a>
+        <a href="#thi-cong">Thi công</a>
+        <a href="#hinh-anh">Hình ảnh xưởng</a>
+        <a href="#lien-he">Liên hệ</a>
+      </nav>
+      <a class="header-call" href="tel:+84943567910">
+        <span class="phone-symbol" aria-hidden="true">☎</span>
+        <span><small>TƯ VẤN / BÁO GIÁ</small><strong>0943 567 910</strong></span>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> TRE VIỆT · NGƯỜI THỢ TÂY NINH</p>
+          <h1>Từ cây tre,<br />dựng nên <em>nếp nhà.</em></h1>
+          <p class="hero-description">
+            Xưởng nhận đóng giường, thang, bàn ghế tre; bán tre cây và thi
+            công mái lá, quán cà phê, nhà vườn theo yêu cầu.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-light" href="#san-pham">Xem sản phẩm <span>↘</span></a>
+            <a class="button button-outline" href="tel:+84943567910">Gọi hỏi giá <span>↗</span></a>
+          </div>
+          <div class="hero-location">
+            <span class="location-mark">⌖</span>
+            <span><strong>Xưởng tại Tân Châu, Tây Ninh</strong><small>Nhận trao đổi đơn hàng và công trình</small></span>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img
+            src="images/1793514628657_2302248318093158072_8414925042818070924_f6bd788562dd0f237fe60cd14b8ffb95.jpg"
+            alt="Không gian quán với kết cấu mái tre do xưởng thực hiện"
+          />
+          <span class="photo-tag">CÔNG TRÌNH TRE · CÁT NHẬT</span>
+        </div>
+        <div class="hero-index">LÀM TRE · ĐÓNG ĐỒ · DỰNG CÔNG TRÌNH</div>
+      </section>
+
+      <section class="service-strip" aria-label="Dịch vụ của xưởng">
+        <div><span>01</span><strong>Giường tre</strong></div>
+        <div><span>02</span><strong>Thang & bàn ghế tre</strong></div>
+        <div><span>03</span><strong>Bán tre cây</strong></div>
+        <div><span>04</span><strong>Thi công nhà lá, quán</strong></div>
+      </section>
+
+      <section class="catalog section-wrap" id="san-pham">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow eyebrow-dark"><span></span> SẢN PHẨM & DỊCH VỤ</p>
+            <h2>Tre trong nhà,<br class="mobile-break" /> tre ngoài vườn.</h2>
+          </div>
+          <p class="heading-note">
+            Mỗi món có thể trao đổi kích thước và kiểu dáng.<br />
+            Xưởng báo giá theo sản phẩm, số lượng và yêu cầu thực tế.
+          </p>
+        </div>
+        <div class="catalog-tools">
+          <div class="filter-list" role="group" aria-label="Lọc sản phẩm và dịch vụ">
+            <button class="filter-chip is-active" data-filter="all">Tất cả</button>
+            <button class="filter-chip" data-filter="do-tre">Đồ tre</button>
+            <button class="filter-chip" data-filter="tre-cay">Tre cây</button>
+            <button class="filter-chip" data-filter="thi-cong">Thi công</button>
+          </div>
+          <label class="catalog-search">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" placeholder="Tìm sản phẩm..." aria-label="Tìm sản phẩm" />
+          </label>
+        </div>
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        <p class="empty-state" hidden>Chưa thấy mục phù hợp. Bạn gọi xưởng để hỏi thêm nhé.</p>
+      </section>
+
+      <section class="build-section" id="thi-cong">
+        <div class="build-photo">
+          <img
+            src="images/1793514628593_2302248318093158072_8414925042818070924_a363cd27d2b1b5b8b6a3afbc06272234.jpg"
+            alt="Kết cấu khung tre và mái lá trong công trình"
+            loading="lazy"
+          />
+          <span>ẢNH THỰC TẾ TẠI CÔNG TRÌNH</span>
+        </div>
+        <div class="build-copy">
+          <p class="eyebrow"><span></span> NHẬN THI CÔNG THEO YÊU CẦU</p>
+          <h2>Dựng một góc<br />mộc mạc <em>của riêng bạn.</em></h2>
+          <p>
+            Xưởng nhận làm nhà lá, mái tre, chòi nghỉ, quán cà phê và không gian
+            sân vườn. Trao đổi trước về mặt bằng, kiểu dáng và vật liệu để xưởng
+            tư vấn phương án, khối lượng và chi phí.
+          </p>
+          <a class="button button-dark" href="tel:+84943567910">Trao đổi công trình <span>↗</span></a>
+          <div class="build-note"><span>✳</span> Báo giá theo hạng mục và quy mô thực tế</div>
+        </div>
+      </section>
+
+      <section class="gallery section-wrap" id="hinh-anh">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow eyebrow-dark"><span></span> ẢNH TỪ XƯỞNG CÁT NHẬT</p>
+            <h2>Việc xưởng làm,<br class="mobile-break" /> hình xưởng chụp.</h2>
+          </div>
+          <p class="heading-note">Một vài hình ảnh sản phẩm, tre nguyên liệu<br />và công trình đã thực hiện.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-item gallery-tall">
+            <img src="images/1793514628638_2302248318093158072_8414925042818070924_1a4702af2884a85660128b7a0f03ecbd.jpg" alt="Bộ bàn ghế tre tại xưởng" loading="lazy" />
+            <figcaption>Bàn ghế tre</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/1793514628611_2302248318093158072_8414925042818070924_bbc98dd63fa89bb948191620b139f778.jpg" alt="Giường tre và thang tre làm tại xưởng" loading="lazy" />
+            <figcaption>Giường & thang tre</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/1793514628563_2302248318093158072_8414925042818070924_aedded32623b53c413bf5d4d743a442a.jpg" alt="Tre cây được xưởng vận chuyển" loading="lazy" />
+            <figcaption>Tre cây nguyên liệu</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="images/1793514628673_2302248318093158072_8414925042818070924_ba38e5b9bf5c7ebfebbb3e8cbd4e57aa.jpg" alt="Thợ đang thi công sàn và lan can tre" loading="lazy" />
+            <figcaption>Thi công sàn tre</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="contact-section" id="lien-he">
+        <div class="contact-copy">
+          <p class="eyebrow"><span></span> XƯỞNG TRE CÁT NHẬT</p>
+          <h2>Cần tre, cần đóng đồ<br />hay cần làm công trình?</h2>
+          <p>Gọi xưởng để trao đổi mẫu, kích thước, số lượng và báo giá.</p>
+          <div class="contact-numbers">
+            <a href="tel:+84943567910"><span>Điện thoại 1</span><strong>0943 567 910</strong></a>
+            <a href="tel:+84973475757"><span>Điện thoại 2</span><strong>0973 475 757</strong></a>
+          </div>
+          <a
+            class="facebook-link"
+            href="https://www.facebook.com/XuongTreCatNhat/"
+            target="_blank"
+            rel="noopener noreferrer"
+          ><span aria-hidden="true">f</span> Ghé trang Facebook Xưởng Tre Cát Nhật ↗</a>
+          <a
+            class="messenger-link"
+            href="https://m.me/XuongTreCatNhat"
+            target="_blank"
+            rel="noopener noreferrer"
+          ><span aria-hidden="true">✉</span> Nhắn tin qua Messenger</a>
+          <p class="address"><span>⌖</span> Tân Hòa, Tân Phú, Tân Châu, Tây Ninh</p>
+        </div>
+        <div class="contact-sign">
+          <img
+            src="images/1793514628681_2302248318093158072_8414925042818070924_1838c5b27fb792c9d031f95ab811257e.jpg"
+            alt="Bảng hiệu Cơ sở Cát Nhật tại Tân Châu, Tây Ninh"
+            loading="lazy"
+          />
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#">
+        <span class="brand-icon" aria-hidden="true">竹</span>
+        <span class="brand-copy"><strong>XƯỞNG TRE CÁT NHẬT</strong><small>TÂN CHÂU · TÂY NINH</small></span>
+      </a>
+      <p>Đóng giường, thang, bàn ghế tre · Bán tre cây · Thi công công trình</p>
+      <a class="footer-phone" href="tel:+84943567910">Gọi xưởng <span>0943 567 910</span> ↗</a>
+      <a class="footer-facebook" href="https://www.facebook.com/XuongTreCatNhat/" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+      <small class="copyright">© 2026 Xưởng Tre Cát Nhật</small>
+    </footer>
+
+    <div class="mobile-contact-actions" aria-label="Liên hệ xưởng">
+      <a class="mobile-message" href="https://m.me/XuongTreCatNhat" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">✉</span> Nhắn Messenger</a>
+      <a class="mobile-call" href="tel:+84943567910"><span aria-hidden="true">☎</span> Gọi xưởng</a>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
